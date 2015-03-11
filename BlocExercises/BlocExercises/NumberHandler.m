@@ -11,18 +11,41 @@
 @implementation NumberHandler
 
 - (NSNumber *) numberThatIsTwiceAsBigAsNumber:(NSNumber *)number {
-    /* WORK HERE */
-    return @0;
+  //this makes tests pass, but what about doubles, floats etc.?
+  
+  int temp = [number intValue];
+  temp *= 2;
+  return [NSNumber numberWithInt:temp];
+  
 }
 
 - (NSArray *) arrayOfNumbersBetweenNumber:(NSInteger)number andOtherNumber: (NSInteger)otherNumber {
-    /* WORK HERE */
-    return @[];
+  
+  NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
+  
+  for (NSInteger i = number; i <= otherNumber; i++) {
+    NSNumber *temp = [NSNumber numberWithInteger: i];
+    [mutableArray addObject:temp];
+  }
+  
+  // is returning a copy of a mutableArray the best solution here?
+  return [mutableArray copy];
+  
 }
 
 - (NSInteger) lowestNumberInArray:(NSArray *)arrayOfNumbers {
-    /* WORK HERE */
-    return 0;
+  
+  // would sorting first be a better solution?
+  
+  NSInteger temp = [arrayOfNumbers[0] integerValue];
+  
+  for (int i = 1; i < [arrayOfNumbers count]; i++) {
+    if ([arrayOfNumbers[i] integerValue] < temp) {
+      temp = [arrayOfNumbers[i] integerValue];
+    }
+  }
+    
+  return temp;
 }
 
 @end
