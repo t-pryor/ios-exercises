@@ -10,6 +10,16 @@
 
 @interface StuffRememberer : NSObject
 
+@property (nonatomic, strong) NSMutableArray *rememberArray;
+// uses the class's copy method for generated setter function
+@property (nonatomic, copy) NSMutableArray *cArray;
+
+
+@property (assign) CGFloat myFloat;
+
+
+
+
 /*
  
  In this class, there are three pairs of methods.

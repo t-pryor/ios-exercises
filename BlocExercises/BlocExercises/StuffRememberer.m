@@ -11,30 +11,70 @@
 @implementation StuffRememberer
 
 - (void) rememberThisArrayForLater:(NSMutableArray *)arrayToRemember {
-    /* WORK HERE */
+  
+  // log arrayToRemember pointer address
+  // should be same as someArray (pass by reference)
+  NSLog(@"arrayToRember points to: %x",(int)arrayToRemember);
+  
+  self.rememberArray = arrayToRemember;
+  
+  // log self.rememberArray address
+  // should be same as arrayToRemember
+  NSLog(@"self.rememberArray points to %x",(int)self.rememberArray);
+  
+  // self.rememberArray points to same address as
+  // someArray (in StuffRemembererTests.m)
+  
+  NSLog(@"%@", self.rememberArray);
 }
 
+
+
 - (void) copyThisArrayForLater:(NSMutableArray *)arrayToCopy {
-    /* WORK HERE */
+  // cArray is specified with copy attribute in .h file
+  // when assigning, NSMutableArray's copy method used
+  // same as:
+  //   self.cArray = [arrayToCopy copy]
+  
+  // this assigns an immutable array to NSMutableArray cArray
+  // NSMutableArray is an NSArray
+  self.cArray = arrayToCopy;
+  
 }
 
 - (void) rememberThisFloatForLater:(CGFloat)floatToRemember {
-    /* WORK HERE */
+  
+  // CGFloat is primitive data type
+  // typedef'd to either float or double depending on host computer's architecture
+  // self.myFloat holds the same value as floatToRemember
+  
+  self.myFloat = floatToRemember;
+
+
 }
 
 - (NSMutableArray *) arrayYouShouldRemember {
-    /* WORK HERE */
-    return [@[] mutableCopy];
+  
+  // self.rememberArray points to same address as
+  // someArray (in StuffRemembererTests.m)
+  // self.rememberArray points to an NSMutableArray
+  // this pointer is returned and stored in otherArray (in StuffRememberTests.m)
+  return self.rememberArray;
+  
 }
 
 - (NSMutableArray *) arrayYouShouldCopy {
-    /* WORK HERE */
-    return [@[] mutableCopy];
+  
+  return self.cArray;
+  
 }
 
 - (CGFloat) floatYouShouldRemember {
-    /* WORK HERE */
-    return 0.0f;
+  
+  NSLog(@"myFloat address %i", (int)&_myFloat);
+  
+  return self.myFloat;
+
 }
 
 @end
